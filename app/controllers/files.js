@@ -1,11 +1,14 @@
+const fs = require('fs');
+
 module.exports.create = (application, req, res) => {
     res.send('Not implemented');
 };
 
 module.exports.send = (application, req, res) => {
     const body = req.body;
+    const file = req.files.file;
     
-    //req.assert('toaddresses', 'O e-mail do destinatário é obrigatório.').notEmpty();
+    req.assert('file', 'O arquivo é obrigatório.').notEmpty();
 
     const errors = req.validationErrors();
     
@@ -15,10 +18,33 @@ module.exports.send = (application, req, res) => {
         return;
     }
     
-    const s3 = application.config.s3();
     
-    s3.send(body, (err, data) => {
+    fs.readFile(file.path, (err, data) => {
         if (err) res.send(err);
-        else res.send(data);
+        
+        const s3 = application.config.s3();
+
+        s3.createBucket(() => {
+            const params = {
+                Key: file.originalFilename,
+                Body: data
+            };
+
+            s3.upload(params, (err, data) => {
+                fs.unlink(file.path, (err) => {
+                    if (err) console.log(err);
+
+                    console.log('Temp file deleted');
+                });
+
+                if (err) {
+                    res.status(500).send(err);
+
+                    return;
+                }
+
+                res.status(200).send('File uploaded successfully');
+            });
+        });
     });
 };

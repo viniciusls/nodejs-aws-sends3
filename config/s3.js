@@ -6,7 +6,7 @@ const s3Client = () => {
     aws.config.region = 'us-east-1';
     aws.config.credentials = credentials;
     
-    return new aws.S3();
+    return new aws.S3({ Bucket: 'nodejs-example' });
 };
 
 module.exports = () => s3Client;
