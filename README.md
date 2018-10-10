@@ -11,6 +11,6 @@ A NodeJS application to send files using Amazon S3
 - Try it using **Postman** or **cURL**, e.g.: `curl -i -X POST -H "Content-Type: multipart/form-data" -F "file=@README.md" -F "bucket=nodejs-example" http://localhost:3000/files/send`
 
 ## Parameters per endpoint
-### messages/send
+### files/send
 - bucket: The bucket to where the file will be uploaded;
 - file: The file itself.
