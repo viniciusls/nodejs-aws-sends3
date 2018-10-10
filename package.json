@@ -1,28 +1,28 @@
 {
-  "name": "nodejs-sendmail",
+  "name": "nodejs-aws-sends3",
   "version": "1.0.0",
-  "description": "A NodeJS application to send mail using Amazon SES",
+  "description": "A NodeJS application to send files using Amazon S3",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/viniciusls/nodejs-sendmail.git"
+    "url": "git+https://github.com/viniciusls/nodejs-aws-sends3.git"
   },
   "keywords": [
     "nodejs",
     "aws",
     "amazon",
-    "ses",
-    "mail"
+    "s3",
+    "files"
   ],
   "author": "Vinicius Silva <vinicius768@msn.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/viniciusls/nodejs-sendmail/issues"
+    "url": "https://github.com/viniciusls/nodejs-aws-sends3/issues"
   },
-  "homepage": "https://github.com/viniciusls/nodejs-sendmail#readme",
+  "homepage": "https://github.com/viniciusls/nodejs-aws-sends3#readme",
   "dependencies": {
     "aws-sdk": "^2.327.0",
     "body-parser": "^1.18.3",
