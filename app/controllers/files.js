@@ -7,8 +7,8 @@ module.exports.create = (application, req, res) => {
 module.exports.send = (application, req, res) => {
     const body = req.body;
     const file = req.files.file;
-    
-    req.assert('file', 'O arquivo é obrigatório.').notEmpty();
+
+    req.assert('bucket', 'O bucket é obrigatório.').notEmpty();
 
     const errors = req.validationErrors();
     
@@ -24,8 +24,9 @@ module.exports.send = (application, req, res) => {
         
         const s3 = application.config.s3();
 
-        s3.createBucket(() => {
+        s3.createBucket({ Bucket: body.bucket }, () => {
             const params = {
+                Bucket: body.bucket,
                 Key: file.originalFilename,
                 Body: data
             };
